@@ -6,7 +6,7 @@
 
     <groupId>cn.sxy</groupId>
     <artifactId>touch_to_top</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <build>
         <plugins>
             <plugin>
