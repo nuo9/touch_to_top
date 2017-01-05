@@ -3,25 +3,25 @@ import cn.sxy.touch_to_top.TouchToTop;
 public class Test {
 
     public static void main(String[] args) {
-        //testMain();
-        //testStart();
-        //testHeadCount();
-        //testTouchLimit();
-        //testComplex();
+        testMain();
+        testStart();
+        testHeadCount();
+        testTouchLimit();
+        testComplex();
         testOutput();
     }
 
     private static void testMain() {
         TouchToTop t = TouchToTop.create(i -> true);
         int x = t.touch();
-        assert false;
+        assert x == Integer.MAX_VALUE;
     }
 
     private static void testStart() {
         TouchToTop t = TouchToTop.create(i -> true);
         t.setStart(100);
         int x = t.touch();
-        assert false;
+        assert x == Integer.MAX_VALUE;
     }
 
     private static void testHeadCount() {

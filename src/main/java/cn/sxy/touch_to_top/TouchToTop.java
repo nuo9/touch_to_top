@@ -1,5 +1,7 @@
 package cn.sxy.touch_to_top;
 
+import java.util.function.Function;
+
 public class TouchToTop {
     // 从 start+1 开始跑
     private int start = 0;
@@ -8,7 +10,7 @@ public class TouchToTop {
     // 被测超过 touchLimit 条则跳出
     private int touchLimit = Integer.MAX_VALUE;
     // 测试方法
-    private IAvailable available;
+    private Function<Integer, Boolean> available;
     // 状态输出
     private IOutput output = (c, m, f) -> {
     };
@@ -16,7 +18,7 @@ public class TouchToTop {
     private TouchToTop() {
     }
 
-    public static TouchToTop create(IAvailable available) {
+    public static TouchToTop create(Function<Integer, Boolean> available) {
         TouchToTop t = new TouchToTop();
         t.available = available;
         return t;
@@ -50,8 +52,9 @@ public class TouchToTop {
         int cursor = start;
         int max = start;
         int falseCount = 0;
-        while (falseCount < headCount) {
-            boolean availableResult = available.isAvailable(++cursor);
+        while (falseCount < headCount && cursor < Integer.MAX_VALUE) {
+            Boolean applyResult = available.apply(++cursor);
+            boolean availableResult = applyResult == null ? false : applyResult;
             if (availableResult) {
                 max = cursor;
                 falseCount = 0;
